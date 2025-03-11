@@ -21,7 +21,7 @@ jobs:
       - name: Download Folder from Google Drive
         run: |
           mkdir -p docs/google-drive-folder
-          rclone copy --drive-shared-with-me gdrive:1UKDG_w8cY3Aid6WNPCLA8ePDqQoQ03_t docs/google-drive-folder
+          rclone copy --drive-shared-with-me gdrive:https://drive.google.com/drive/folders/1UKDG_w8cY3Aid6WNPCLA8ePDqQoQ03_t docs/google-drive-folder
 
       - name: Serve MkDocs
         run: mkdocs build
