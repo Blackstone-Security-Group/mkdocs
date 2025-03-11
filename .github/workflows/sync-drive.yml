@@ -15,13 +15,14 @@ jobs:
 
       - name: Install rclone
         run: |
-          curl https://rclone.org/install.sh | sudo bash
-          rclone config create gdrive public link
+          apt-get update -y
+          apt install -y rclone
+          #curl https://rclone.org/install.sh | sudo bash
 
       - name: Download Folder from Google Drive
         run: |
           mkdir -p docs/google-drive-folder
-          rclone copy --drive-shared-with-me gdrive:https://drive.google.com/drive/folders/1UKDG_w8cY3Aid6WNPCLA8ePDqQoQ03_t docs/google-drive-folder
+          rclone copy --drive-shared-with-me gdrive:1UKDG_w8cY3Aid6WNPCLA8ePDqQoQ03_t docs/google-drive-folder
 
       - name: Serve MkDocs
         run: mkdocs build
