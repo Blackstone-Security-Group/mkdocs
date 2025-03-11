@@ -1,0 +1,27 @@
+name: Sync Google Drive Folder
+
+on:
+  schedule:
+    - cron: "0 3 * * *"  # Run hourly
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  sync-google-drive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout MkDocs Repository
+        uses: actions/checkout@v3
+
+      - name: Install rclone
+        run: |
+          curl https://rclone.org/install.sh | sudo bash
+          rclone config create gdrive public link
+
+      - name: Download Folder from Google Drive
+        run: |
+          mkdir -p docs/google-drive-folder
+          rclone copy --drive-shared-with-me gdrive:1UKDG_w8cY3Aid6WNPCLA8ePDqQoQ03_t docs/google-drive-folder
+
+      - name: Serve MkDocs
+        run: mkdocs build
