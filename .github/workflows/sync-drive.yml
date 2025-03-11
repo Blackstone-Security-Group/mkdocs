@@ -16,7 +16,7 @@ jobs:
       - name: Install rclone
         run: |
           apt-get update -y
-          apt install -y rclone
+          apt-get install -y rclone
           #curl https://rclone.org/install.sh | sudo bash
 
       - name: Download Folder from Google Drive
